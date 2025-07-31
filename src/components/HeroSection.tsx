@@ -89,7 +89,7 @@ const HeroSection = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 animate-bounce">
           <Button 
             variant="ghost" 
             size="icon" 

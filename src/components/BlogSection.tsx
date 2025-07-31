@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -45,7 +45,13 @@ const BlogSection = () => {
     },
   ];
 
+    const [filter, setFilter] = useState('All');
+
   const categories = ['All', 'Development', 'Design', 'Performance', 'Career'];
+
+  const filteredPosts = filter === 'All'
+    ? posts
+    : posts.filter(post => post.category === filter);
 
   return (
     <section id="blog" className="py-20 bg-gradient-subtle">
@@ -104,20 +110,21 @@ const BlogSection = () => {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {categories.map((categoryName) => (
             <Button
-              key={category}
-              variant="minimal"
-              className="hover:bg-accent hover:text-accent-foreground"
+              key={categoryName}
+              variant={filter === categoryName ? 'accent' : 'minimal'}
+              onClick={() => setFilter(categoryName)}
+              className="transition-spring"
             >
-              {category}
+              {categoryName}
             </Button>
           ))}
         </div>
 
         {/* Recent Posts Grid */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {posts.map((post, index) => (
+          {filteredPosts.map((post, index) => (
             <Card 
               key={index} 
               className="p-6 shadow-card hover:shadow-elegant transition-smooth animate-fade-in group cursor-pointer"
