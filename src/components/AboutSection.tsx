@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Code2, Palette, Smartphone, Database, Globe, Users, Briefcase } from 'lucide-react';
+import ExperienceTimeline from './ExperienceTimeline';
 
 const AboutSection = () => {
   const [skillProgress, setSkillProgress] = useState<number[]>([]);
@@ -110,8 +111,8 @@ const AboutSection = () => {
   const values = [
     {
       icon: Code2,
-      title: 'Clean Code',
-      description: 'Writing maintainable, scalable code that stands the test of time.',
+      title: 'Clean Design',
+      description: 'Creating clear, cohesive design systems that scale gracefully.',
     },
     {
       icon: Users,
@@ -191,58 +192,9 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Timeline */}
-        <div ref={timelineRef} className="mb-16 animate-fade-in">
-          <h3 className="text-2xl font-serif font-semibold mb-8 text-center">Professional Timeline</h3>
-          <div className="max-w-4xl mx-auto relative">
-            {/* Growing Timeline Line */}
-            <div className="absolute left-8 top-0 w-0.5 bg-muted">
-              <div 
-                className="w-full bg-gradient-accent transition-smooth origin-top"
-                style={{ 
-                  height: `${timelineHeight}%`,
-                  transition: 'height 0.3s ease-out'
-                }}
-              />
-            </div>
-            
-            <div className="space-y-12 relative">
-              {timeline.map((item, index) => (
-                <div 
-                  key={index} 
-                  className={`flex items-start gap-6 transition-smooth ${
-                    visibleItems[index] 
-                      ? 'opacity-100 translate-y-0' 
-                      : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ 
-                    transitionDelay: `${index * 0.2}s`,
-                    transitionDuration: '0.6s'
-                  }}
-                >
-                  {/* Timeline Dot */}
-                  <div className="relative z-10">
-                    <div className="w-4 h-4 bg-gradient-accent rounded-full border-4 border-background shadow-elegant" />
-                  </div>
-                  
-                  {/* Timeline Content */}
-                  <Card className="flex-1 p-6 shadow-card hover:shadow-elegant transition-smooth ml-2">
-                    <div className="flex flex-col md:flex-row md:items-center gap-4">
-                      <Badge variant="outline" className="w-fit bg-gradient-accent text-accent-foreground">
-                        {item.year}
-                      </Badge>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold">{item.title}</h4>
-                        <p className="text-accent font-medium">{item.company}</p>
-                        <p className="text-muted-foreground mt-2">{item.description}</p>
-                      </div>
-                    </div>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* Experience Timeline */}
+        {/* Experience Timeline */}
+        <ExperienceTimeline />
 
         {/* Values */}
         <div className="animate-fade-in">

@@ -233,9 +233,8 @@ const ContactSection = () => {
                 </Badge>
               </div>
               <p className="text-muted-foreground mb-4">
-                I'm currently available for new projects and collaborations. 
-                Whether you need a full-stack developer, design consultation, 
-                or technical mentoring, let's discuss your needs.
+                I'm currently available for new projects and collaborations.
+                Whether you need UI/UX design, a brand refresh, or product consultation, let's discuss your needs.
               </p>
               <div className="space-y-2 text-sm">
                 <p><strong>Response time:</strong> Within 24 hours</p>

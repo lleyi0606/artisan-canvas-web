@@ -6,10 +6,10 @@ import { Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react';
 
 const BlogSection = () => {
   const featuredPost = {
-    title: 'Building Scalable React Applications: Best Practices for 2024',
-    excerpt: 'Discover the latest patterns and techniques for building maintainable, performant React applications that scale with your business needs.',
-    category: 'Development',
-    readTime: '8 min read',
+    title: 'Designing Accessible Interfaces: Best Practices for 2024',
+    excerpt: 'Explore key principles and practical tips for crafting inclusive, accessible digital products that delight every user.',
+    category: 'Design',
+    readTime: '7 min read',
     publishDate: 'December 15, 2024',
     featured: true,
   };
@@ -23,9 +23,9 @@ const BlogSection = () => {
       publishDate: 'December 10, 2024',
     },
     {
-      title: 'TypeScript Tips: Advanced Type Patterns',
-      excerpt: 'Advanced TypeScript patterns that will make your code more robust and maintainable.',
-      category: 'Development',
+      title: 'Creating Cohesive Design Systems',
+      excerpt: 'Techniques for building scalable design systems that empower teams and ensure brand consistency.',
+      category: 'Design',
       readTime: '6 min read',
       publishDate: 'December 5, 2024',
     },

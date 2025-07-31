@@ -26,11 +26,11 @@ const HeroSection = () => {
               <h1 className="text-5xl lg:text-7xl font-serif font-bold mb-4">
                 <span className="text-gradient">Creative</span>
                 <br />
-                <span className="text-foreground">Developer</span>
+                <span className="text-foreground">UI/UX Designer</span>
               </h1>
               <p className="text-xl lg:text-2xl text-muted-foreground mb-8 max-w-2xl">
-                Crafting beautiful digital experiences with clean code, thoughtful design, 
-                and innovative solutions that make a difference.
+                Crafting beautiful, user-centred digital experiences that blend aesthetic elegance 
+                with intuitive functionality.
               </p>
             </div>
 

@@ -13,11 +13,11 @@ const PortfolioSection = () => {
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A modern, scalable e-commerce platform built with React, Node.js, and PostgreSQL. Features include real-time inventory management, secure payments, and advanced analytics.',
+      title: 'E-Commerce Platform UI/UX Overhaul',
+      description: 'Comprehensive UI/UX design for a scalable e-commerce platform, focusing on intuitive navigation, seamless checkout flows and a cohesive design system.',
       image: projectWebDev,
       category: 'web',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'AWS'],
+      technologies: ['Figma', 'Adobe XD', 'Design System', 'User Testing', 'Prototyping'],
       liveUrl: '#',
       githubUrl: '#',
       results: {
@@ -28,11 +28,11 @@ const PortfolioSection = () => {
     },
     {
       id: 2,
-      title: 'Health & Fitness App',
-      description: 'Native mobile application for tracking workouts, nutrition, and health metrics. Integrated with wearable devices and features social challenges.',
+      title: 'Health & Fitness App Experience Design',
+      description: 'End-to-end UI/UX design for a mobile app that tracks workouts, nutrition and wellness metrics, integrating rich visuals and engaging micro-interactions.',
       image: projectMobileApp,
       category: 'mobile',
-      technologies: ['React Native', 'Firebase', 'Redux', 'HealthKit', 'Google Fit'],
+      technologies: ['Figma', 'Sketch', 'InVision', 'User Personas', 'Prototype Testing'],
       liveUrl: '#',
       githubUrl: '#',
       results: {
@@ -47,7 +47,7 @@ const PortfolioSection = () => {
       description: 'Complete brand identity design for a tech startup, including logo design, color palette, typography, and comprehensive brand guidelines.',
       image: projectBranding,
       category: 'design',
-      technologies: ['Figma', 'Adobe Creative Suite', 'Sketch', 'Principle'],
+      technologies: ['Figma', 'Illustrator', 'InDesign', 'Miro', 'Style Guide'],
       liveUrl: '#',
       githubUrl: '#',
       results: {
@@ -79,8 +79,7 @@ const PortfolioSection = () => {
             Featured <span className="text-accent-gradient">Projects</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            A showcase of my recent work, demonstrating expertise across web development, 
-            mobile applications, and design solutions.
+            A showcase of my recent work, highlighting expertise across web, mobile, and brand experiences.
           </p>
 
           {/* Filter Buttons */}
