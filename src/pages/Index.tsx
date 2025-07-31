@@ -1,12 +1,55 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import Navigation from '@/components/Navigation';
+import ParticleBackground from '@/components/ParticleBackground';
+import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
+import PortfolioSection from '@/components/PortfolioSection';
+import BlogSection from '@/components/BlogSection';
+import ContactSection from '@/components/ContactSection';
+import CustomCursor from '@/components/CustomCursor';
+import ScrollProgress from '@/components/ScrollProgress';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* Background Elements */}
+      <ParticleBackground />
+      <CustomCursor />
+      <ScrollProgress />
+      
+      {/* Navigation */}
+      <Navigation />
+      
+      {/* Main Content */}
+      <main className="relative z-10">
+        <HeroSection />
+        <AboutSection />
+        <PortfolioSection />
+        <BlogSection />
+        <ContactSection />
+      </main>
+      
+      {/* Footer */}
+      <footer className="bg-primary text-primary-foreground py-12">
+        <div className="container mx-auto px-6 text-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-2xl font-serif font-bold">
+              Portfolio
+            </div>
+            <p className="text-primary-foreground/80">
+              © 2024 Portfolio. Crafted with passion and purpose.
+            </p>
+            <div className="flex gap-4">
+              <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth">
+                Privacy
+              </a>
+              <a href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-smooth">
+                Terms
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
