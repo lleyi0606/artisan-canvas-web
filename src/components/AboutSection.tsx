@@ -1,44 +1,111 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Code2, Palette, Smartphone, Database, Globe, Users } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { Code2, Palette, Smartphone, Database, Globe, Users, Briefcase } from 'lucide-react';
 
 const AboutSection = () => {
+  const [skillProgress, setSkillProgress] = useState<number[]>([]);
+  const [timelineHeight, setTimelineHeight] = useState(0);
+  const [visibleItems, setVisibleItems] = useState<boolean[]>([]);
+  const skillsRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
   const skills = [
-    { name: 'React & Next.js', level: 95, icon: Code2 },
-    { name: 'TypeScript', level: 90, icon: Code2 },
-    { name: 'UI/UX Design', level: 85, icon: Palette },
-    { name: 'Mobile Development', level: 80, icon: Smartphone },
-    { name: 'Backend APIs', level: 85, icon: Database },
-    { name: 'Web Performance', level: 88, icon: Globe },
+    { name: 'UI/UX Design', level: 95, icon: Palette },
+    { name: 'Brand Identity', level: 90, icon: Briefcase },
+    { name: 'Web Design', level: 88, icon: Globe },
+    { name: 'Prototyping', level: 85, icon: Smartphone },
+    { name: 'Design Systems', level: 87, icon: Code2 },
+    { name: 'Client Relations', level: 92, icon: Users },
   ];
 
   const timeline = [
     {
       year: '2024',
-      title: 'Senior Full-Stack Developer',
-      company: 'Tech Innovation Co.',
-      description: 'Leading development of scalable web applications and mentoring junior developers.',
+      title: 'Senior Freelance Designer',
+      company: 'Independent Practice',
+      description: 'Building comprehensive brand identities and digital experiences for diverse clients worldwide.',
     },
     {
       year: '2022',
-      title: 'Frontend Specialist',
-      company: 'Digital Creative Agency',
-      description: 'Specialized in creating exceptional user experiences and modern web interfaces.',
+      title: 'Lead Designer',
+      company: 'Creative Studio Co.',
+      description: 'Spearheaded major branding projects and mentored junior designers in creative processes.',
     },
     {
       year: '2020',
-      title: 'Junior Developer',
-      company: 'Startup Solutions',
-      description: 'Started journey in web development, focusing on React and modern JavaScript.',
+      title: 'Junior Designer',
+      company: 'Design Agency',
+      description: 'Focused on digital design and user experience, developing skills in modern design tools.',
     },
     {
       year: '2019',
-      title: 'Computer Science Degree',
-      company: 'University of Technology',
-      description: 'Graduated with honors, specializing in software engineering and web technologies.',
+      title: 'Design Degree',
+      company: 'Art & Design University',
+      description: 'Graduated with honors, specializing in visual communication and digital design.',
     },
   ];
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const skillsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Animate skill progress bars
+          setTimeout(() => {
+            setSkillProgress(skills.map(skill => skill.level));
+          }, 300);
+        }
+      });
+    }, observerOptions);
+
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const rect = entry.boundingClientRect;
+          const scrollPercent = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+          setTimelineHeight(scrollPercent * 100);
+          
+          // Show timeline items progressively
+          const newVisibleItems = timeline.map((_, index) => {
+            return scrollPercent > (index + 1) / (timeline.length + 1);
+          });
+          setVisibleItems(newVisibleItems);
+        }
+      });
+    }, { threshold: 0 });
+
+    if (skillsRef.current) skillsObserver.observe(skillsRef.current);
+    if (timelineRef.current) timelineObserver.observe(timelineRef.current);
+
+    const handleScroll = () => {
+      if (timelineRef.current) {
+        const rect = timelineRef.current.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const scrollPercent = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+          setTimelineHeight(scrollPercent * 100);
+          
+          const newVisibleItems = timeline.map((_, index) => {
+            return scrollPercent > (index + 1) / (timeline.length + 1);
+          });
+          setVisibleItems(newVisibleItems);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      skillsObserver.disconnect();
+      timelineObserver.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const values = [
     {
@@ -80,26 +147,26 @@ const AboutSection = () => {
             <h3 className="text-2xl font-serif font-semibold mb-6">My Journey</h3>
             <div className="space-y-6 text-muted-foreground">
               <p>
-                My passion for development started during university when I discovered the magic 
-                of bringing ideas to life through code. What began as curiosity quickly grew into 
-                a deep love for creating meaningful digital experiences.
+                My passion for design started during university when I discovered the magic 
+                of bringing ideas to life through visual storytelling. What began as curiosity quickly grew into 
+                a deep love for creating meaningful brand experiences.
               </p>
               <p>
-                Over the years, I've had the privilege of working with diverse teams and clients, 
-                from innovative startups to established enterprises. Each project has taught me 
+                Over the years, I've had the privilege of working with diverse clients, 
+                from innovative startups to established brands. Each project has taught me 
                 something new and reinforced my belief in the power of thoughtful design and 
-                clean, efficient code.
+                strategic creative thinking.
               </p>
               <p>
-                When I'm not coding, you'll find me exploring new design trends, contributing to 
-                open-source projects, or sharing knowledge with the developer community through 
+                When I'm not designing, you'll find me exploring new creative trends, collaborating with 
+                fellow designers, or sharing knowledge with the creative community through 
                 workshops and mentoring.
               </p>
             </div>
           </div>
 
           {/* Skills */}
-          <div className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+          <div ref={skillsRef} className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <h3 className="text-2xl font-serif font-semibold mb-6">Skills & Expertise</h3>
             <div className="space-y-4">
               {skills.map((skill, index) => {
@@ -113,15 +180,10 @@ const AboutSection = () => {
                       </div>
                       <span className="text-sm text-muted-foreground">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                      <div
-                        className="bg-gradient-accent h-2 rounded-full transition-smooth"
-                        style={{ 
-                          width: `${skill.level}%`,
-                          animationDelay: `${index * 0.1}s`
-                        }}
-                      />
-                    </div>
+                    <Progress 
+                      value={skillProgress[index] || 0} 
+                      className="h-2"
+                    />
                   </div>
                 );
               })}
@@ -130,23 +192,53 @@ const AboutSection = () => {
         </div>
 
         {/* Timeline */}
-        <div className="mb-16 animate-fade-in">
+        <div ref={timelineRef} className="mb-16 animate-fade-in">
           <h3 className="text-2xl font-serif font-semibold mb-8 text-center">Professional Timeline</h3>
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
+          <div className="max-w-4xl mx-auto relative">
+            {/* Growing Timeline Line */}
+            <div className="absolute left-8 top-0 w-0.5 bg-muted">
+              <div 
+                className="w-full bg-gradient-accent transition-smooth origin-top"
+                style={{ 
+                  height: `${timelineHeight}%`,
+                  transition: 'height 0.3s ease-out'
+                }}
+              />
+            </div>
+            
+            <div className="space-y-12 relative">
               {timeline.map((item, index) => (
-                <Card key={index} className="p-6 shadow-card hover:shadow-elegant transition-smooth">
-                  <div className="flex flex-col md:flex-row md:items-center gap-4">
-                    <Badge variant="outline" className="w-fit bg-gradient-accent text-accent-foreground">
-                      {item.year}
-                    </Badge>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold">{item.title}</h4>
-                      <p className="text-accent font-medium">{item.company}</p>
-                      <p className="text-muted-foreground mt-2">{item.description}</p>
-                    </div>
+                <div 
+                  key={index} 
+                  className={`flex items-start gap-6 transition-smooth ${
+                    visibleItems[index] 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ 
+                    transitionDelay: `${index * 0.2}s`,
+                    transitionDuration: '0.6s'
+                  }}
+                >
+                  {/* Timeline Dot */}
+                  <div className="relative z-10">
+                    <div className="w-4 h-4 bg-gradient-accent rounded-full border-4 border-background shadow-elegant" />
                   </div>
-                </Card>
+                  
+                  {/* Timeline Content */}
+                  <Card className="flex-1 p-6 shadow-card hover:shadow-elegant transition-smooth ml-2">
+                    <div className="flex flex-col md:flex-row md:items-center gap-4">
+                      <Badge variant="outline" className="w-fit bg-gradient-accent text-accent-foreground">
+                        {item.year}
+                      </Badge>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold">{item.title}</h4>
+                        <p className="text-accent font-medium">{item.company}</p>
+                        <p className="text-muted-foreground mt-2">{item.description}</p>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
               ))}
             </div>
           </div>
