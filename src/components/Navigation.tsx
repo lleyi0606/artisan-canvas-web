@@ -11,7 +11,6 @@ const Navigation = () => {
   const navItems = [
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
-    { href: '#portfolio', label: 'Portfolio' },
     { href: '#blog', label: 'Blog' },
     { href: '#contact', label: 'Contact' },
   ];
@@ -55,18 +54,12 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-elegant border-b border-border'
-          : 'bg-transparent'
-      }`}
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] md:w-auto max-w-5xl transition-smooth duration-300
+        ${isScrolled ? 'opacity-100 translate-y-0 bg-background/90 backdrop-blur-md shadow-elegant border border-border rounded-full' : 'opacity-0 -translate-y-4 pointer-events-none'}
+      `}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="text-2xl font-serif font-bold text-gradient">
-            Portfolio
-          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -89,7 +82,7 @@ const Navigation = () => {
           </div>
 
           {/* Theme Toggle & Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 md:space-x-6 md:ml-8">
             <Button
               variant="ghost"
               size="icon"
