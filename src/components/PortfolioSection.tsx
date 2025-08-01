@@ -118,7 +118,7 @@ const PortfolioSection = () => {
                 </div>
 
                 {/* Project Details */}
-                <div className="lg:w-1/2 p-8 lg:p-12">
+                <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col h-full">
                   <div className="mb-4">
                     <Badge variant="outline" className="mb-4 bg-gradient-accent text-accent-foreground">
                       {categories.find(cat => cat.id === project.category)?.label}
@@ -159,7 +159,7 @@ const PortfolioSection = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 mt-auto">
                     <Button variant="accent" className="flex-1">
                       <Eye className="h-4 w-4 mr-2" />
                       Live Demo

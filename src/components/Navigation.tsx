@@ -55,11 +55,21 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] md:w-auto max-w-5xl transition-smooth duration-300
-        ${isScrolled ? 'opacity-100 translate-y-0 bg-background/90 backdrop-blur-md shadow-elegant border border-border rounded-full' : 'opacity-0 -translate-y-4 pointer-events-none'}
+        ${isScrolled ? 'opacity-100 translate-y-0 bg-background/90 backdrop-blur-md shadow-elegant border border-border rounded-lg md:rounded-full' : 'opacity-0 -translate-y-4 pointer-events-none'}
       `}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
+
+          {/* Mobile Menu Toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden rounded-lg md:rounded-full mr-4"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -75,7 +85,7 @@ const Navigation = () => {
               >
                 {item.label}
                 {activeSection === item.href.substring(1) && (
-                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-accent rounded-full" />
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-accent rounded-lg md:rounded-full" />
                 )}
               </button>
             ))}
@@ -87,20 +97,12 @@ const Navigation = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full"
+              className="rounded-lg md:rounded-full"
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
 
-            {/* Mobile Menu Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden rounded-full"
-            >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+
           </div>
         </div>
 

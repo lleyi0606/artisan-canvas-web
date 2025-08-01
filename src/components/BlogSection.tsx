@@ -88,7 +88,7 @@ const BlogSection = () => {
               {featuredPost.excerpt}
             </p>
             
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-auto">
               <div className="flex items-center gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
@@ -100,7 +100,7 @@ const BlogSection = () => {
                 </div>
               </div>
               
-              <Button variant="accent" className="group">
+              <Button variant="accent" className="group self-start sm:self-auto">
                 Read Article
                 <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -127,7 +127,7 @@ const BlogSection = () => {
           {filteredPosts.map((post, index) => (
             <Card 
               key={index} 
-              className="p-6 shadow-card hover:shadow-elegant transition-smooth animate-fade-in group cursor-pointer"
+              className="p-6 shadow-card hover:shadow-elegant transition-smooth animate-fade-in group cursor-pointer flex flex-col h-full"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="mb-4">
@@ -142,7 +142,7 @@ const BlogSection = () => {
                 </p>
               </div>
               
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mt-auto">
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Calendar className="h-3 w-3" />

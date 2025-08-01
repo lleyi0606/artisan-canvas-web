@@ -13,7 +13,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden py-24 sm:py-24 md:py-28 lg:py-0">
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-subtle opacity-50" />
       
