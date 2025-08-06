@@ -1,21 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { useToast } from '@/hooks/use-toast';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
 
 const ContactSection = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   const contactInfo = [
     {
@@ -44,28 +34,7 @@ const ContactSection = () => {
     { icon: Twitter, href: '#', label: 'Twitter' },
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-      
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setIsSubmitting(false);
-    }, 1000);
-  };
 
   return (
     <section id="contact" className="py-20">
@@ -82,166 +51,85 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="max-w-6xl mx-auto">
           
-          {/* Contact Form */}
-          <Card className="p-8 shadow-card hover:shadow-elegant transition-smooth animate-slide-up">
-            <h3 className="text-2xl font-serif font-semibold mb-6">Send a Message</h3>
+          {/* Contact Information Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 animate-slide-up">
             
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name *
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="transition-smooth focus:ring-accent"
-                    placeholder="Your full name"
-                  />
+            {/* Left Column - Availability */}
+            <div className="order-2 lg:order-1">
+              <Card className="p-8 shadow-card bg-gradient-subtle h-full">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-semibold">Availability</h3>
+                  <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">
+                    Available
+                  </Badge>
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email *
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="transition-smooth focus:ring-accent"
-                    placeholder="your.email@example.com"
-                  />
+                <p className="text-muted-foreground mb-4">
+                  I'm currently available for new projects and collaborations.
+                  Whether you need UI/UX design, a brand refresh, or product consultation, let's discuss your needs.
+                </p>
+                <div className="space-y-2 text-sm">
+                  <p><strong>Response time:</strong> Within 24 hours</p>
+                  <p><strong>Preferred projects:</strong> Web applications, Mobile apps, Design systems</p>
+                  <p><strong>Collaboration style:</strong> Agile, Remote-friendly</p>
                 </div>
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                  Subject *
-                </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  type="text"
-                  required
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  className="transition-smooth focus:ring-accent"
-                  placeholder="What's this about?"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message *
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  required
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  className="min-h-32 transition-smooth focus:ring-accent"
-                  placeholder="Tell me about your project or just say hello..."
-                />
-              </div>
-              
-              <Button 
-                type="submit" 
-                variant="hero" 
-                size="lg" 
-                disabled={isSubmitting}
-                className="w-full"
-              >
-                {isSubmitting ? (
-                  'Sending...'
-                ) : (
-                  <>
-                    <Send className="h-4 w-4 mr-2" />
-                    Send Message
-                  </>
-                )}
-              </Button>
-            </form>
-          </Card>
+              </Card>
+            </div>
 
-          {/* Contact Information */}
-          <div className="space-y-8 animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            
-            {/* Contact Details */}
-            <Card className="p-8 shadow-card">
-              <h3 className="text-2xl font-serif font-semibold mb-6">Get In Touch</h3>
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={index} className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center">
-                        <Icon className="h-5 w-5 text-accent-foreground" />
+            {/* Right Column - Contact Details and Social Links */}
+            <div className="space-y-8 order-1 lg:order-2">
+              
+              {/* Contact Details */}
+              <Card className="p-8 shadow-card">
+                <h3 className="text-2xl font-serif font-semibold mb-6">Get In Touch</h3>
+                <div className="space-y-6">
+                  {contactInfo.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={index} className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-gradient-accent rounded-full flex items-center justify-center">
+                          <Icon className="h-5 w-5 text-accent-foreground" />
+                        </div>
+                        <div>
+                          <p className="font-medium">{item.label}</p>
+                          <a 
+                            href={item.href} 
+                            className="text-muted-foreground hover:text-accent transition-smooth"
+                          >
+                            {item.value}
+                          </a>
+                        </div>
                       </div>
-                      <div>
-                        <p className="font-medium">{item.label}</p>
-                        <a 
-                          href={item.href} 
-                          className="text-muted-foreground hover:text-accent transition-smooth"
-                        >
-                          {item.value}
+                    );
+                  })}
+                </div>
+              </Card>
+
+              {/* Social Links */}
+              <Card className="p-8 shadow-card">
+                <h3 className="text-xl font-semibold mb-6">Follow Me</h3>
+                <div className="flex gap-4">
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon;
+                    return (
+                      <Button
+                        key={index}
+                        variant="ghost"
+                        size="icon"
+                        className="rounded-full hover:shadow-glow hover:bg-accent hover:text-accent-foreground transition-spring"
+                        asChild
+                      >
+                        <a href={social.href} aria-label={social.label}>
+                          <Icon className="h-5 w-5" />
                         </a>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </Card>
+                      </Button>
+                    );
+                  })}
+                </div>
+              </Card>
 
-            {/* Social Links */}
-            <Card className="p-8 shadow-card">
-              <h3 className="text-xl font-semibold mb-6">Follow Me</h3>
-              <div className="flex gap-4">
-                {socialLinks.map((social, index) => {
-                  const Icon = social.icon;
-                  return (
-                    <Button
-                      key={index}
-                      variant="ghost"
-                      size="icon"
-                      className="rounded-full hover:shadow-glow hover:bg-accent hover:text-accent-foreground transition-spring"
-                      asChild
-                    >
-                      <a href={social.href} aria-label={social.label}>
-                        <Icon className="h-5 w-5" />
-                      </a>
-                    </Button>
-                  );
-                })}
-              </div>
-            </Card>
-
-            {/* Availability */}
-            <Card className="p-8 shadow-card bg-gradient-subtle">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">Availability</h3>
-                <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300">
-                  Available
-                </Badge>
-              </div>
-              <p className="text-muted-foreground mb-4">
-                I'm currently available for new projects and collaborations.
-                Whether you need UI/UX design, a brand refresh, or product consultation, let's discuss your needs.
-              </p>
-              <div className="space-y-2 text-sm">
-                <p><strong>Response time:</strong> Within 24 hours</p>
-                <p><strong>Preferred projects:</strong> Web applications, Mobile apps, Design systems</p>
-                <p><strong>Collaboration style:</strong> Agile, Remote-friendly</p>
-              </div>
-            </Card>
+            </div>
           </div>
         </div>
 

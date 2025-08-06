@@ -160,28 +160,17 @@ const BlogSection = () => {
           ))}
         </div>
 
-        {/* Newsletter Signup */}
+        {/* Coming Soon */}
         <Card className="p-8 lg:p-12 text-center shadow-card bg-gradient-primary text-primary-foreground animate-fade-in">
           <div className="max-w-2xl mx-auto">
             <BookOpen className="h-12 w-12 mx-auto mb-6 opacity-80" />
             <h3 className="text-2xl lg:text-3xl font-serif font-bold mb-4">
-              Stay Updated
+              Coming Soon
             </h3>
             <p className="text-lg opacity-90 mb-8">
-              Subscribe to get notified about new articles, tutorials, and insights 
-              delivered directly to your inbox.
+              Newsletter subscription and new articles are coming soon. 
+              Stay tuned for exciting updates and insights!
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-md bg-primary-foreground text-primary placeholder:text-primary/60 focus:outline-none focus:ring-2 focus:ring-accent"
-              />
-              <Button variant="accent" size="lg">
-                Subscribe
-              </Button>
-            </div>
           </div>
         </Card>
       </div>
